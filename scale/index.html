@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Horizontal Image Scroll</title>
+    <style>
+      @font-face {
+        font-family: "Pretendard";
+        src: url("../assets/PretendardVariable.woff2") format("woff2");
+        font-weight: 45 920;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      :root {
+        --edge-x: 25vw;
+        --edge-y: 40px;
+        --gap: 100px;
+        --fixed-width: 0px;
+        --image-scale: calc(400 / 1290);
+        --fade-opacity: 0.18;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+      }
+
+      body {
+        overflow-x: auto;
+        overflow-y: hidden;
+        background: #fff;
+        font-family: "Pretendard", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      .fixed-image,
+      .scroll-track {
+        bottom: var(--edge-y);
+      }
+
+      .fixed-image {
+        position: fixed;
+        left: 40px;
+        z-index: 2;
+        display: block;
+        height: 400px;
+        width: auto;
+      }
+
+      .scroll-track {
+        position: absolute;
+        left: calc(var(--edge-x) + var(--fixed-width) + var(--gap));
+        display: flex;
+        align-items: flex-end;
+        gap: var(--gap);
+        padding-right: var(--edge-x);
+      }
+
+      .scroll-track img {
+        display: block;
+        flex: 0 0 auto;
+        width: auto;
+      }
+
+      .image-item {
+        transition: opacity 180ms ease;
+      }
+
+      body.is-filtering .image-item.is-faded {
+        opacity: var(--fade-opacity);
+      }
+
+      .fixed-image {
+        opacity: 1;
+      }
+
+      .text-box {
+        position: fixed;
+        top: var(--edge-y);
+        right: 40px;
+        z-index: 3;
+        width: 800px;
+        min-width: 260px;
+        color: #111;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 180ms ease, transform 180ms ease;
+        white-space: pre-line;
+        padding: 10px;
+        background: rgba(255,255,255,.8);
+        height: calc(100vh - 80px);
+        overflow-y: scroll;
+      }
+
+      .text-box.is-visible {
+        opacity: 1;
+      }
+
+      .text-box h2 {
+        margin: 0 0 8px;
+        font: 600 20px/1.25 "Pretendard", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      .text-box p {
+        margin: 0;
+        font: 20px/1.25 "Pretendard", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      .floating-image-layer {
+        position: fixed;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      .floating-image {
+        position: fixed;
+        display: block;
+        max-width: 300px;
+        max-height: 300px;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+        opacity: 0;
+      }
+
+      .floating-image.is-visible {
+        opacity: 1;
+      }
+
+      .scroll-track img[src="1-1.png"] {
+        height: calc(99px * var(--image-scale));
+      }
+
+      .scroll-track img[src="2-1.png"] {
+        height: calc(120px * var(--image-scale));
+      }
+
+      .scroll-track img[src="3-1.png"] {
+        height: calc(207px * var(--image-scale));
+      }
+
+      .scroll-track img[src="4-1.png"] {
+        height: calc(243px * var(--image-scale));
+      }
+
+      .scroll-track img[src="5-1.png"] {
+        height: calc(246px * var(--image-scale));
+      }
+
+      .scroll-track img[src="6-1.png"] {
+        height: calc(363px * var(--image-scale));
+      }
+
+      .scroll-track img[src="7-1.png"] {
+        height: calc(399px * var(--image-scale));
+      }
+
+      .scroll-track img[src="2-2.png"] {
+        height: calc(549px * var(--image-scale));
+      }
+
+      .scroll-track img[src="8-1.png"] {
+        height: calc(560px * var(--image-scale));
+      }
+
+      .scroll-track img[src="3-2.png"] {
+        height: calc(618px * var(--image-scale));
+      }
+
+      .scroll-track img[src="5-2.png"] {
+        height: calc(1064px * var(--image-scale));
+      }
+
+      .scroll-track img[src="4-2.png"] {
+        height: calc(1608px * var(--image-scale));
+      }
+
+      .scroll-track img[src="1-2.png"] {
+        height: calc(1590px * var(--image-scale));
+      }
+    </style>
+  </head>
+  <body>
+    <img class="fixed-image image-item" src="a.png" alt="a" data-fixed-image>
+
+    <aside class="text-box" data-text-box aria-live="polite">
+      <h2 data-text-title></h2>
+      <p data-text-body></p>
+    </aside>
+
+    <div class="floating-image-layer" data-floating-image-layer aria-hidden="true"></div>
+
+    <main class="scroll-track" aria-label="Horizontal image sequence">
+      <img class="image-item" src="1-1.png" alt="1" data-group="1">
+      <img class="image-item" src="2-1.png" alt="2" data-group="2">
+      <img class="image-item" src="3-1.png" alt="3" data-group="3">
+      <img class="image-item" src="4-1.png" alt="4" data-group="4">
+      <img class="image-item" src="5-1.png" alt="5" data-group="5">
+      <img class="image-item" src="6-1.png" alt="6" data-group="6">
+      <img class="image-item" src="7-1.png" alt="7" data-group="7">
+      <img class="image-item" src="2-2.png" alt="8" data-group="2">
+      <img class="image-item" src="8-1.png" alt="9" data-group="8">
+      <img class="image-item" src="3-2.png" alt="10" data-group="3">
+      <img class="image-item" src="5-2.png" alt="11" data-group="5">
+      <img class="image-item" src="4-2.png" alt="12" data-group="4">
+      <img class="image-item" src="1-2.png" alt="13" data-group="1">
+    </main>
+
+    <script>
+      const fixedImage = document.querySelector("[data-fixed-image]");
+      const groupedImages = document.querySelectorAll("[data-group]");
+      const textBox = document.querySelector("[data-text-box]");
+      const textTitle = document.querySelector("[data-text-title]");
+      const textBody = document.querySelector("[data-text-body]");
+      const floatingImageLayer = document.querySelector("[data-floating-image-layer]");
+      const supplementalImageLimit = 5;
+      const supplementalImageExtensions = ["jpg", "jpeg"];
+      const supplementalImageCache = new Map();
+      let activeGroup = null;
+
+      const groupTexts = {
+        1: {
+          title: "Set 1",
+          body: "Edit this text for images 1-1.png and 1-2.png."
+        },
+        2: {
+          title: "Set 2",
+          body: "Edit this text for images 2-1.png and 2-2.png."
+        },
+        3: {
+          title: "Set 3",
+          body: "Edit this text for images 3-1.png and 3-2.png."
+        },
+        4: {
+          title: "Set 4",
+          body: "Edit this text for images 4-1.png and 4-2.png."
+        },
+        5: {
+          title: "Set 5",
+          body: "Edit this text for images 5-1.png and 5-2.png."
+        },
+        6: {
+          title: "Park Yeonwoo, Choi Yesol, Kang Minseo, Hong Daeun, Lee Jimin",
+          body: "This project began with a simple question: what would happen if the elements that shape our daily experience changed their scale? Instead of choosing unrelated objects, we focused on two things that we encounter every day as students, Building 52 and the door handle of our classroom.\n\nBuilding 52 is a place that we normally experience from the inside. It is large enough to contain classrooms, hallways, and the activities of hundreds of students. To change this relationship, we recreated the building as a small model measuring approximately 15–20 centimeters wide. The model was constructed using foam board, styrofoam board, acrylic paint, and printed photographs of the building façade.By reducing an entire building to something that can fit in one hand, we transformed a space that usually surrounds us into an object that can be observed all at once. In contrast, we selected the classroom door handle because it is one of the smallest yet most frequently used parts of the building. We enlarged it to approximately 1.3 meters in length using thick paper, clay, and metallic spray paint. As its scale increased, the handle became less like a functional object and more like an independent form occupying the room. The enlarged handle draws attention to a detail that people normally interact with without thinking. Rather than simply making one object smaller and another larger, our goal was to reverse the way we relate to them. The building, which is normally too large to fully grasp, became something that could be held and examined. The door handle, which is usually small enough to fit in a hand, became a dominant presence within the space. Through this exchange of scale, we explored how size affects perception. The project suggests that our understanding of architecture and objects is not determined solely by their form, but also by the physical relationship we have with them. By altering that relationship, familiar elements of our everyday environment can become surprising, unfamiliar, and worthy of renewed attention."
+        },
+        7: {
+          title: "Set 7",
+          body: ""},
+        8: {
+          title: "Set 8",
+          body: "Edit this text for image 8-1.png."
+        }
+      };
+
+      function updateFixedWidth() {
+        document.documentElement.style.setProperty(
+          "--fixed-width",
+          `${fixedImage.getBoundingClientRect().width}px`
+        );
+      }
+
+      if (fixedImage.complete) {
+        updateFixedWidth();
+      } else {
+        fixedImage.addEventListener("load", updateFixedWidth, { once: true });
+      }
+
+      window.addEventListener("resize", updateFixedWidth);
+      window.addEventListener("wheel", (event) => {
+        if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) {
+          return;
+        }
+
+        event.preventDefault();
+        window.scrollBy({
+          left: event.deltaY,
+          behavior: "auto"
+        });
+      }, { passive: false });
+
+      function showGroup(group) {
+        const copy = groupTexts[group] || {
+          title: `Set ${group}`,
+          body: "Add text for this image set in the groupTexts object."
+        };
+
+        activeGroup = group;
+        document.body.classList.add("is-filtering");
+        groupedImages.forEach((image) => {
+          image.classList.toggle("is-faded", image.dataset.group !== group);
+        });
+
+        textTitle.textContent = copy.title;
+        textBody.textContent = copy.body;
+        textBox.classList.add("is-visible");
+        showSupplementalImages(group);
+      }
+
+      function clearGroup() {
+        activeGroup = null;
+        document.body.classList.remove("is-filtering");
+        groupedImages.forEach((image) => image.classList.remove("is-faded"));
+        textBox.classList.remove("is-visible");
+        clearSupplementalImages();
+      }
+
+      function loadImage(src) {
+        return new Promise((resolve) => {
+          const image = new Image();
+
+          image.onload = () => resolve(src);
+          image.onerror = () => resolve(null);
+          image.src = src;
+        });
+      }
+
+      async function getSupplementalImages(group) {
+        if (supplementalImageCache.has(group)) {
+          return supplementalImageCache.get(group);
+        }
+
+        const candidates = [];
+
+        for (let index = 1; index <= supplementalImageLimit; index += 1) {
+          supplementalImageExtensions.forEach((extension) => {
+            candidates.push(`img/${group}-${index}.${extension}`);
+          });
+        }
+
+        const resolvedImages = await Promise.all(candidates.map(loadImage));
+        const images = resolvedImages.filter(Boolean);
+
+        supplementalImageCache.set(group, images);
+        return images;
+      }
+
+      async function showSupplementalImages(group) {
+        clearSupplementalImages();
+
+        const images = await getSupplementalImages(group);
+
+        if (activeGroup !== group) {
+          return;
+        }
+
+        images.forEach((src) => {
+          const image = document.createElement("img");
+          const left = Math.random() * Math.max((window.innerWidth / 2) - 300, 0);
+          const top = Math.random() * Math.max(window.innerHeight - 400, 0);
+
+          image.className = "floating-image";
+          image.src = src;
+          image.alt = "";
+          image.style.left = `${left}px`;
+          image.style.top = `${top}px`;
+          floatingImageLayer.append(image);
+
+          requestAnimationFrame(() => {
+            image.classList.add("is-visible");
+          });
+        });
+      }
+
+      function clearSupplementalImages() {
+        floatingImageLayer.replaceChildren();
+      }
+
+      groupedImages.forEach((image) => {
+        image.addEventListener("mouseenter", () => showGroup(image.dataset.group));
+        image.addEventListener("focus", () => showGroup(image.dataset.group));
+      });
+
+      document.querySelector(".scroll-track").addEventListener("mouseleave", clearGroup);
+      groupedImages.forEach((image) => {
+        image.addEventListener("blur", clearGroup);
+      });
+    </script>
+  </body>
+</html>

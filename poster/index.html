@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Image Slideshow</title>
+  <style>
+    @font-face {
+      font-family: "Pretendard";
+      src: url("../assets/PretendardVariable.woff2") format("woff2");
+      font-weight: 45 920;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      background: #000;
+      color: #fff;
+      font-family: "Pretendard", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      overflow: hidden;
+    }
+
+    .slideshow {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      display: grid;
+      place-items: center;
+      background: #000;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      opacity: 0;
+      transition: opacity 800ms ease;
+    }
+
+    .slide.active {
+      opacity: 1;
+    }
+
+    .status {
+      position: fixed;
+      right: 0px;
+      bottom: 0px;
+      padding: 6px 10px;
+      border-radius: 0px;
+      background: rgb(0 0 0 / 60%);
+      color: rgb(255 255 255 / 85%);
+      font-size: 14px;
+      line-height: 1.35;
+      pointer-events: none;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <main class="slideshow" aria-label="Image slideshow">
+    <img class="slide active" src="Jiwoo-Kwon_Seoyeon-Jang_Sumin-Lee.jpg" alt="">
+    <img class="slide" src="Park-Seohyeong_Lee-Jeongwoo_Choi-Sihun_Hong-Daeun.jpg" alt="">
+    <img class="slide" src="Seohyun-Lee_Sunwoo-Kim_Seoyoung-Jang_Yuha-Kwon.jpg" alt="">
+    <img class="slide" src="Nayoung-Kwon_Jaehoon-So_Seyoung-Jeong_Junmo-Yoon.jpg" alt="">
+    <img class="slide" src="Minsung-Kim_Suhyeok-Han_Jihun-Baek_Haram-Kim_Jahyeok-Yang.jpg" alt="">
+    <img class="slide" src="gyeonga-ryu.jpg" alt="">
+    <img class="slide" src="Park-Yeonwoo_Choi-Yesol_Lee-Jimin.jpg" alt="">
+    <img class="slide" src="Alejandro_Dongho-Choi.jpg" alt="">
+    <img class="slide" src="Zahra_Ma-Kok-Ching_Paulina_Alicia_빈채현.jpg" alt="">
+    <img class="slide" src="Cho-Seoyeong_Lee-Huieun_Bae-Juna_Park-Jungin.jpg" alt="">
+    <img class="slide" src="Minjeong-Kang_Uwon-Shin_Hongju-Lee_Seoyeon-Jang_Yunseo-Cho_Heejeon-Hwang.jpg" alt="">
+  </main>
+  <div class="status" aria-live="polite"></div>
+
+  <script>
+    const slides = Array.from(document.querySelectorAll(".slide"));
+    const status = document.querySelector(".status");
+    const delayMs = 10000;
+    let currentIndex = 0;
+
+    function getAuthors(slide) {
+      const filename = decodeURIComponent(slide.getAttribute("src")).replace(/\.[^.]+$/, "");
+      return filename
+        .split("_")
+        .map((name) => name.replaceAll("-", " "))
+        .join(", ");
+    }
+
+    function showSlide(index) {
+      slides[currentIndex].classList.remove("active");
+      currentIndex = index;
+      slides[currentIndex].classList.add("active");
+      status.textContent = getAuthors(slides[currentIndex]);
+    }
+
+    status.textContent = getAuthors(slides[currentIndex]);
+
+    setInterval(() => {
+      showSlide((currentIndex + 1) % slides.length);
+    }, delayMs);
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowRight") {
+        showSlide((currentIndex + 1) % slides.length);
+      }
+
+      if (event.key === "ArrowLeft") {
+        showSlide((currentIndex - 1 + slides.length) % slides.length);
+      }
+    });
+  </script>
+</body>
+</html>

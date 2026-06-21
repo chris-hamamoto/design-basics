@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Material Sound</title>
+  <meta charset="utf-8" />
+  <style>
+    @font-face {
+      font-family: "Pretendard";
+      src: url("../assets/PretendardVariable.woff2") format("woff2");
+      font-weight: 45 920;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Pretendard", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .slideshow-button,
+    .close-slideshow,
+    .slideshow-nav {
+      appearance: none;
+      border: 1px solid #888;
+      background: #fff;
+      color: #000;
+      cursor: pointer;
+      font: inherit;
+      padding: 10px 14px;
+    }
+
+    .slideshow-button {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 10;
+    }
+
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      border: 1px solid #888;
+      background: #888;
+    }
+
+    .image-cell {
+      aspect-ratio: 4 / 2.825;
+      background-color: #fff;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      position: relative;
+    }
+
+    .image-cell[data-sound]::after {
+      bottom: 8px;
+      content: "🔊";
+      font-size: 18px;
+      line-height: 1;
+      position: absolute;
+      right: 8px;
+    }
+
+    .slideshow {
+      align-items: center;
+      background: #fff;
+      display: none;
+      inset: 0;
+      justify-content: center;
+      position: fixed;
+      z-index: 20;
+    }
+
+    .slideshow.is-active {
+      display: flex;
+    }
+
+    .slideshow-image {
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    .slideshow-sound-icon {
+      bottom: 16px;
+      display: none;
+      font-size: 28px;
+      line-height: 1;
+      position: fixed;
+      right: 16px;
+      z-index: 21;
+    }
+
+    .slideshow-sound-icon.is-visible {
+      display: block;
+    }
+
+    .close-slideshow {
+      position: fixed;
+      right: 16px;
+      top: 16px;
+      z-index: 21;
+    }
+
+    .slideshow-nav {
+      align-items: center;
+      border-radius: 50%;
+      display: flex;
+      font-size: 40px;
+      height: 56px;
+      justify-content: center;
+      padding: 0;
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 56px;
+      z-index: 21;
+    }
+
+    .slideshow-nav.previous {
+      left: 16px;
+    }
+
+    .slideshow-nav.next {
+      right: 16px;
+    }
+  </style>
+</head>
+<body>
+  <button class="slideshow-button" type="button">Slideshow</button>
+  <main class="image-grid">
+    <div class="image-cell" data-sound="assets/hong-daeun.mp3" style="background-image: url('assets/hong-daeun.gif');"></div>
+    <div class="image-cell" data-sound="assets/geonmin-kim.mp3" style="background-image: url('assets/geonmin-kim.gif');"></div>
+    <div class="image-cell" data-sound="assets/dongho-choi.mp3" style="background-image: url('assets/dongho-choi.gif');"></div>
+    <div class="image-cell" data-sound="assets/seoyoung-jang.m4a" style="background-image: url('assets/seoyoung-jang.gif');"></div>
+    <div class="image-cell" data-sound="assets/hwang-hee_jung.mp3" style="background-image: url('assets/hwang-hee_jung.gif');"></div>
+    <div class="image-cell" data-sound="assets/park-yeonwoo.m4a" style="background-image: url('assets/park-yeonwoo.gif');"></div>
+    <div class="image-cell" data-sound="assets/hongju-lee.m4a" style="background-image: url('assets/hongju-lee.gif');"></div>
+    <div class="image-cell" style="background-image: url('assets/minseo-kang.gif');"></div>
+    <div class="image-cell" style="background-image: url('assets/gyeonga-liu.gif');"></div>
+    <div class="image-cell" data-sound="assets/choi-yesol.mp3" style="background-image: url('assets/yesol-choi.gif');"></div>
+    <div class="image-cell" style="background-image: url('assets/alejandro.gif');"></div>
+    <div class="image-cell" data-sound="assets/huieun-lee.m4a" style="background-image: url('assets/huieun-lee.gif');"></div>
+    <div class="image-cell" data-sound="assets/jimin-lee.mp3" style="background-image: url('assets/jimin-lee.gif');"></div>
+    <div class="image-cell" style="background-image: url('assets/jihun-baek.gif');"></div>
+    <div class="image-cell" data-sound="assets/seoyeon-jang.qta" style="background-image: url('assets/seoyeon-jang.gif');"></div>
+    <div class="image-cell" style="background-image: url('assets/paulina-temborius.gif');"></div>
+    <div class="image-cell" style="background-image: url('assets/junah-bae.gif');"></div>
+    <div class="image-cell" data-sound="assets/haram-kim.mp3" style="background-image: url('assets/haram-kim.gif');"></div>
+    <div class="image-cell" style="background-image: url('assets/seohyung-park.gif');"></div>
+    <div class="image-cell" style="background-image: url('assets/nayoung-kwon.gif');"></div>
+    <div class="image-cell" style="background-image: url('assets/seyoung-cho.gif');"></div>
+    <div class="image-cell" style="background-image: url('assets/jingin-park.gif');"></div>
+    <div class="image-cell" data-sound="assets/kim-jeongho.mp3" style="background-image: url('assets/kim-jeongho.gif');"></div>
+    <div class="image-cell" style="background-image: url('assets/yeona-cho.gif');"></div>
+    <div class="image-cell" data-sound="assets/zhara.m4a" style="background-image: url('assets/zhara.gif');"></div>
+    <div class="image-cell" style="background-image: url('assets/jaehoon-soh.gif');"></div>
+  </main>
+  <section class="slideshow" aria-hidden="true">
+    <button class="close-slideshow" type="button">Close</button>
+    <button class="slideshow-nav previous" type="button" aria-label="Previous image">‹</button>
+    <div class="slideshow-image"></div>
+    <button class="slideshow-nav next" type="button" aria-label="Next image">›</button>
+    <div class="slideshow-sound-icon" aria-hidden="true">🔊</div>
+  </section>
+  <script>
+    const cells = Array.from(document.querySelectorAll(".image-cell"));
+    const images = cells.map((cell) => cell.style.backgroundImage);
+    const sounds = cells.map((cell) => cell.dataset.sound || "");
+    const audioBySound = new Map();
+    const startButton = document.querySelector(".slideshow-button");
+    const closeButton = document.querySelector(".close-slideshow");
+    const previousButton = document.querySelector(".slideshow-nav.previous");
+    const nextButton = document.querySelector(".slideshow-nav.next");
+    const slideshow = document.querySelector(".slideshow");
+    const slideshowImage = document.querySelector(".slideshow-image");
+    const slideshowSoundIcon = document.querySelector(".slideshow-sound-icon");
+    let currentSlide = 0;
+    let currentAudio;
+
+    function stopCurrentAudio() {
+      if (!currentAudio) {
+        return;
+      }
+
+      currentAudio.pause();
+      currentAudio.currentTime = 0;
+      currentAudio = null;
+    }
+
+    function playSound(sound) {
+      stopCurrentAudio();
+
+      if (!sound) {
+        return;
+      }
+
+      const audio = audioBySound.get(sound);
+
+      if (!audio) {
+        return;
+      }
+
+      currentAudio = audio;
+      currentAudio.currentTime = 0;
+      currentAudio.loop = slideshow.classList.contains("is-active");
+      currentAudio.play().catch(() => {});
+    }
+
+    cells.forEach((cell) => {
+      const sound = cell.dataset.sound;
+
+      if (!sound) {
+        return;
+      }
+
+      const audio = new Audio(sound);
+      audio.preload = "none";
+      audioBySound.set(sound, audio);
+
+      cell.addEventListener("mouseenter", () => {
+        playSound(sound);
+      });
+
+      cell.addEventListener("mouseleave", () => {
+        if (currentAudio === audio) {
+          stopCurrentAudio();
+        }
+      });
+    });
+
+    function showSlide(index, playSlideSound) {
+      currentSlide = (index + images.length) % images.length;
+      slideshowImage.style.backgroundImage = images[currentSlide];
+      slideshowSoundIcon.classList.toggle("is-visible", Boolean(sounds[currentSlide]));
+
+      if (playSlideSound) {
+        playSound(sounds[currentSlide]);
+      }
+    }
+
+    function showPreviousSlide() {
+      showSlide(currentSlide - 1, true);
+    }
+
+    function showNextSlide() {
+      showSlide(currentSlide + 1, true);
+    }
+
+    function startSlideshow() {
+      if (!images.length) {
+        return;
+      }
+
+      slideshow.classList.add("is-active");
+      slideshow.setAttribute("aria-hidden", "false");
+      showSlide(0, true);
+    }
+
+    function closeSlideshow() {
+      slideshow.classList.remove("is-active");
+      slideshow.setAttribute("aria-hidden", "true");
+      slideshowSoundIcon.classList.remove("is-visible");
+      stopCurrentAudio();
+    }
+
+    startButton.addEventListener("click", startSlideshow);
+    closeButton.addEventListener("click", closeSlideshow);
+    previousButton.addEventListener("click", showPreviousSlide);
+    nextButton.addEventListener("click", showNextSlide);
+  </script>
+</body>
+</html>
