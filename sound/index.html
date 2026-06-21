@@ -58,12 +58,20 @@
     }
 
     .image-cell[data-sound]::after {
-      bottom: 8px;
+      bottom: 12px;
       content: "🔊";
-      font-size: 18px;
+      font-size: 16px;
       line-height: 1;
       position: absolute;
-      right: 8px;
+      right: 12px;
+      background: lightgray;
+      border: 1px solid black;
+      border-radius: 10px;
+      padding: 6px;
+    }
+
+    .image-cell[data-sound]:hover {
+      filter: invert(1);
     }
 
     .slideshow {
@@ -89,13 +97,17 @@
     }
 
     .slideshow-sound-icon {
-      bottom: 16px;
+      bottom: 20px;
       display: none;
-      font-size: 28px;
+      font-size: 22px;
       line-height: 1;
       position: fixed;
-      right: 16px;
+      right: 20px;
       z-index: 21;
+      background: lightgray;
+      border: 1px solid black;
+      border-radius: 10px;
+      padding: 10px;
     }
 
     .slideshow-sound-icon.is-visible {
@@ -113,7 +125,7 @@
       align-items: center;
       border-radius: 50%;
       display: flex;
-      font-size: 40px;
+      font-size: 22px;
       height: 56px;
       justify-content: center;
       padding: 0;
@@ -131,9 +143,35 @@
     .slideshow-nav.next {
       right: 16px;
     }
+
+    .slideshow-button:hover, .slideshow-nav:hover {
+      background: black;
+      color: white;  
+    }
+
+    .page-link {
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      z-index: 10;
+      border: 1px solid #888;
+      background: #fff;
+      color: #000;
+      padding: 10px 14px;
+      font: inherit;
+      text-decoration: none;
+    }
+
+    .page-link:hover {
+      background: #000;
+      color: #fff;
+    }
+
   </style>
 </head>
 <body>
+  <a class="page-link" href="../scale/">Full ↔ False</a>
+
   <button class="slideshow-button" type="button">Slideshow</button>
   <main class="image-grid">
     <div class="image-cell" data-sound="assets/hong-daeun.mp3" style="background-image: url('assets/hong-daeun.gif');"></div>
@@ -164,11 +202,11 @@
     <div class="image-cell" style="background-image: url('assets/jaehoon-soh.gif');"></div>
   </main>
   <section class="slideshow" aria-hidden="true">
-    <button class="close-slideshow" type="button">Close</button>
-    <button class="slideshow-nav previous" type="button" aria-label="Previous image">‹</button>
+    <button class="close-slideshow" type="button">Grid</button>
+    <button class="slideshow-nav previous" type="button" aria-label="Previous image">&larr;</button>
     <div class="slideshow-image"></div>
-    <button class="slideshow-nav next" type="button" aria-label="Next image">›</button>
-    <div class="slideshow-sound-icon" aria-hidden="true">🔊</div>
+    <button class="slideshow-nav next" type="button" aria-label="Next image">&rarr;</button>
+    <div class="slideshow-sound-icon" aria-hidden="true">🔈</div>
   </section>
   <script>
     const cells = Array.from(document.querySelectorAll(".image-cell"));

@@ -85,17 +85,20 @@
         top: var(--edge-y);
         right: 40px;
         z-index: 3;
-        width: 800px;
+        width: 600px;
         min-width: 260px;
-        color: #111;
+        color: #000;
         opacity: 0;
         pointer-events: none;
         transition: opacity 180ms ease, transform 180ms ease;
         white-space: pre-line;
-        padding: 10px;
-        background: rgba(255,255,255,.8);
-        height: calc(100vh - 80px);
+        padding: 10px 20px;
+        background: rgba(255,255,255,1);
+        border: 1px solid black;
+        border-radius: 10px;
+        /* height: calc(100vh - 80px); */
         overflow-y: scroll;
+        pointer-events: none;
       }
 
       .text-box.is-visible {
@@ -103,13 +106,13 @@
       }
 
       .text-box h2 {
-        margin: 0 0 8px;
-        font: 600 20px/1.25 "Pretendard", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        margin: 0 0 0px;
+        font: 600 14px/1.25 "Pretendard", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       }
 
       .text-box p {
         margin: 0;
-        font: 20px/1.25 "Pretendard", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        font: 14px/1.25 "Pretendard", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       }
 
       .floating-image-layer {
@@ -128,10 +131,33 @@
         height: auto;
         object-fit: contain;
         opacity: 0;
+        pointer-events: none;
       }
 
       .floating-image.is-visible {
         opacity: 1;
+      }
+
+      .page-link {
+        position: fixed;
+        top: 16px;
+        left: 16px;
+        z-index: 10;
+        border: 1px solid #888;
+        background: #fff;
+        color: #000;
+        padding: 10px 14px;
+        font: inherit;
+        text-decoration: none;
+      }
+
+      .page-link:hover {
+        background: #000;
+        color: #fff;
+      }
+
+      .scroll-track img[src="9-1.png"] {
+        height: calc(78px * var(--image-scale));
       }
 
       .scroll-track img[src="1-1.png"] {
@@ -158,8 +184,8 @@
         height: calc(363px * var(--image-scale));
       }
 
-      .scroll-track img[src="7-1.png"] {
-        height: calc(399px * var(--image-scale));
+      .scroll-track img[src="7-2.png"] {
+        height: calc(588px * var(--image-scale));
       }
 
       .scroll-track img[src="2-2.png"] {
@@ -188,6 +214,8 @@
     </style>
   </head>
   <body>
+    <a class="page-link" href="../sound/">Material Sound</a>
+
     <img class="fixed-image image-item" src="a.png" alt="a" data-fixed-image>
 
     <aside class="text-box" data-text-box aria-live="polite">
@@ -198,15 +226,16 @@
     <div class="floating-image-layer" data-floating-image-layer aria-hidden="true"></div>
 
     <main class="scroll-track" aria-label="Horizontal image sequence">
+      <img class="image-item" src="9-1.png" alt="9" data-group="9">
       <img class="image-item" src="1-1.png" alt="1" data-group="1">
       <img class="image-item" src="2-1.png" alt="2" data-group="2">
       <img class="image-item" src="3-1.png" alt="3" data-group="3">
       <img class="image-item" src="4-1.png" alt="4" data-group="4">
       <img class="image-item" src="5-1.png" alt="5" data-group="5">
       <img class="image-item" src="6-1.png" alt="6" data-group="6">
-      <img class="image-item" src="7-1.png" alt="7" data-group="7">
       <img class="image-item" src="2-2.png" alt="8" data-group="2">
       <img class="image-item" src="8-1.png" alt="9" data-group="8">
+      <img class="image-item" src="7-2.png" alt="7" data-group="7">
       <img class="image-item" src="3-2.png" alt="10" data-group="3">
       <img class="image-item" src="5-2.png" alt="11" data-group="5">
       <img class="image-item" src="4-2.png" alt="12" data-group="4">
@@ -227,35 +256,40 @@
 
       const groupTexts = {
         1: {
-          title: "Set 1",
-          body: "Edit this text for images 1-1.png and 1-2.png."
+          title: "Haram Kim, Haneul Kim, Junah Bae, Heejung Hwang, Huieun Lee",
+          body: "Our group continued from our previous project by enlarging a familiar but often overlooked restroom sign to roughly human scale. Using toilet paper within the context of the restroom itself, we created male and female icons and transformed what is usually just a simple graphic symbol into something more physical and spatial. \n\n We filled each section with colored cellophane, which creates an effect similar to digital pixels. Restroom icons are normally designed to be read instantly through extremely simplified forms, but when enlarged, they begin to reveal how complex identities such as “male” and “female” are reduced to minimal visual information. We became interested in how this kind of visual system reflects the way people are categorized and organized within public spaces. \n\n We also imagined the sign as something flexible rather than fixed. Depending on the user, the sign could be flipped between male and female, or even mixed together by people who do not identify within strict gender boundaries. Through this idea, we wanted to question the rigid binary structure often embedded in public signage. Although restroom signs appear universal and objective, real identities and experiences are much more fluid. \n\n By enlarging restroom icons that are usually only seen at a small scale, we aimed to create a sense of unfamiliarity around something very ordinary. A sign that is normally understood only as functional information becomes more bodily and confrontational at human scale. Through this shift in scale, we explored how familiar objects can take on completely different meanings and experiences. \n\n Following this project, we also created a miniature restroom that could no longer function as an actual usable space. Restrooms are typically designed around the proportions and needs of the human body, but by intentionally shrinking the scale, we removed that functionality and turned the restroom into something to observe rather than use. \n\n Because the restroom became too small to enter, viewers could only experience it from the outside. This shift encourages people to reconsider the functional and human-centered assumptions built into everyday spaces. As the restroom starts to resemble a toy or display model, it suggests that even ordinary architectural spaces can feel unfamiliar and gain new meanings simply through a change in scale."
         },
         2: {
-          title: "Set 2",
-          body: "Edit this text for images 2-1.png and 2-2.png."
+          title: "Nayoung Kwon, Seyoung Jeong, Yeonho Lim, Ayon Jo, Jeongwoo Lee",
+          body: "This work explores scale transformation through language and visual perception. A 30 cm human figure is placed inside an oversized bag measuring 120 cm × 80 cm, transforming the bag into a room-like environment. Inspired by the Korean sentence '아버지가방에 들어가신다', the work plays with the ambiguity created by spacing while simultaneously reversing the expected scale relationship between a person and a bag. By allowing viewers to see both interpretations at once-a father entering a room and a father entering a bag--the piece presents scale transformation in a playful, intuitive, and accessible way."
         },
         3: {
-          title: "Set 3",
-          body: "Edit this text for images 3-1.png and 3-2.png."
+          title: "Alejandro, Zahra, Paulina, Dongho Choi, Alicia",
+          body: "What happens when we’re ready for the world, but the world isn’t ready for us? This project explores the disconnect between internal capacity and external circumstances through a play on inverted architectural scales. \n\n By modeling a monumental key set against a tiny door, the model subverts object-based logic to bring to light a deeply human frustration. The giant key embodies the weight of our abilities, the time invested in preparation, and the power of talent. It is a magnificent tool, capable of activating the most complex mechanisms. However, when confronted with a miniaturized door, the design exposes a harsh reality: opportunities often present themselves in a reduced form, limited by chance, bureaucracy, or the sheer narrow-mindedness of our surroundings. \n\n The physical impossibility of the key fitting into the lock is not a flaw in the tool; it is a diagnosis of the threshold. The project invites us to reflect on those moments in life when, despite being optimally prepared, the scale of the opportunity simply does not match our own magnitude."
         },
         4: {
-          title: "Set 4",
-          body: "Edit this text for images 4-1.png and 4-2.png."
+          title: "Sunwoo Kim, Jiwoo Kwon, Yuha Kwon, Wooone Sin, Sumin Lee",
+          body: "Our team wanted to create an experience that brings out a sense of scale, discomfort, topography, and shelter—things you would never feel around a regular-sized leaf. While we usually view fallen leaves as annoying trash to clean up, they mean something entirely different to the tiny creatures living in the ecosystem. \n\n In this exhibition, we flipped the dynamic: we shrunk the broom to the size of a leaf and scaled the leaves up to the size of a broom. We found this reversal of active and passive roles incredibly interesting. We want our audience to actually pick up the broom, try to sweep the leaves, and feel the resulting discomfort and helplessness firsthand. \n\n Think about how we admire beautiful snow, while the people who have to shovel it jokingly call it 'the devil's dandruff.' Similarly, how we perceive fallen leaves depends entirely on our perspective. Through this project, we want visitors to step into two different worlds: to experience being a tiny creature crawling on the ground, and to feel the weight of a cleaner faced with an overwhelming sea of leaves. We hope this installation sparks a completely new way of seeing the world."
         },
         5: {
-          title: "Set 5",
-          body: "Edit this text for images 5-1.png and 5-2.png."
+          title: "Minsung Kim, Suhyeok Han, Jihun Baek, Jungin Park, Jahyeok Yang, Seoyoung Cho",
+          body: "Our project reverses the scale relationship between a sock and a sleeping bag by creating a sleeping bag in the form of a sock and a pair of socks in the form of a sleeping bag. \n\n The idea began with the observation that these two objects share many formal characteristics despite their different functions. Both are soft, flexible forms that envelop the body and create a sense of warmth and protection. By exchanging their expected sizes while preserving their recognizable shapes, we transformed familiar objects into unfamiliar experiences. \n\n The sock-shaped sleeping bag turns an ordinary piece of clothing into an inhabitable space, inviting a person to crawl inside as if entering a giant sock. Conversely, the sleeping bag-shaped socks reduce the experience of shelter to the scale of the feet, making the act of wearing socks resemble stepping into miniature sleeping bags. \n\n Through this exchange of scale, the project encourages viewers to reconsider the relationship between form and function. It reveals how an object's identity is shaped not only by its appearance but also by its size and the way the human body interacts with it. By maintaining the visual language of each object while altering its scale and use, the project creates a playful and unexpected experiences."
         },
         6: {
           title: "Park Yeonwoo, Choi Yesol, Kang Minseo, Hong Daeun, Lee Jimin",
           body: "This project began with a simple question: what would happen if the elements that shape our daily experience changed their scale? Instead of choosing unrelated objects, we focused on two things that we encounter every day as students, Building 52 and the door handle of our classroom.\n\nBuilding 52 is a place that we normally experience from the inside. It is large enough to contain classrooms, hallways, and the activities of hundreds of students. To change this relationship, we recreated the building as a small model measuring approximately 15–20 centimeters wide. The model was constructed using foam board, styrofoam board, acrylic paint, and printed photographs of the building façade.By reducing an entire building to something that can fit in one hand, we transformed a space that usually surrounds us into an object that can be observed all at once. In contrast, we selected the classroom door handle because it is one of the smallest yet most frequently used parts of the building. We enlarged it to approximately 1.3 meters in length using thick paper, clay, and metallic spray paint. As its scale increased, the handle became less like a functional object and more like an independent form occupying the room. The enlarged handle draws attention to a detail that people normally interact with without thinking. Rather than simply making one object smaller and another larger, our goal was to reverse the way we relate to them. The building, which is normally too large to fully grasp, became something that could be held and examined. The door handle, which is usually small enough to fit in a hand, became a dominant presence within the space. Through this exchange of scale, we explored how size affects perception. The project suggests that our understanding of architecture and objects is not determined solely by their form, but also by the physical relationship we have with them. By altering that relationship, familiar elements of our everyday environment can become surprising, unfamiliar, and worthy of renewed attention."
         },
         7: {
-          title: "Set 7",
-          body: ""},
+          title: "Kim Geonmin, Choi Hoonmin, Yeo Yungu, Kim Jeongho, Bin Chaehyeon",
+          body: ""
+        },
         8: {
-          title: "Set 8",
-          body: "Edit this text for image 8-1.png."
+          title: "Yeona Cho, Jimin Moon, Hayeon Lee, Minjung Kang, Yunseo Cho",
+          body: "Our team conducted a project focusing on reversing the scale between a capsule toy dispenser and the capsules themselves. Since capsules are conventionally dispensed from a machine, we believed that inverting this dynamic—by placing a capsule machine inside a massive capsule—would yield an engaging result. Consequently, we painted a large acrylic hemisphere, manually constructed a paper capsule machine, and designed a giant toy instruction manual to be enclosed within. The artwork was displayed next to the vending machines in the Fine Arts building."
+        },
+        9: {
+          title: "Kyunga Ryu, Seohyeong Park, Seohyeon Lee, Hongju Lee, Seoyeon Jang, Seoyeong Jang",
+          body: "For the Full False project, we wanted to create a situation that completely reversed the scale of an ordinary everyday experience. \n\n The idea came to us while we were having dinner at Areumdeuri, the cafeteria for students in the College of Fine Arts. We were eating one of its most popular menu items, spaghetti, when we began to imagine what would happen if the scale relationship between the food and the people were inverted. Instead of people eating spaghetti, what if the spaghetti became enormous and the people, tables, and chairs became tiny? We thought this reversal would create a humorous and surreal scene while making viewers reconsider something as familiar as a cafeteria meal. \n\n Our original plan was to install the work inside Areumdeuri, where the menu item is actually served. However, since the installation could interfere with cafeteria users and the assigned exhibition area was elsewhere, we chose the second-floor entrance of Building 50. The relatively low ceiling also made the installation process more practical. \n\n To emphasize the sense of movement, we created a giant overturned bowl made of Styrofoam with a diameter of approximately 180 cm, making it appear as if the spaghetti had just spilled out. The spaghetti strands were suspended from the ceiling pipes, creating the impression that the pasta was cascading through the space. we made five spaghetti strands, each about 2 meters long, and five meatballs, each with a diameter of approximately 30 cm. \n\n To strengthen the illusion of scale, we placed miniature figures of people, tables, and chairs beneath the oversized food. Each miniature element measured only about 5 cm, making the viewers feel as though they had suddenly shrunk while the spaghetti had grown to a monumental size.\n\n By transforming an ordinary cafeteria meal into an exaggerated and impossible scene, Full False explores how changing scale can alter our perception of reality and turn a familiar experience into something unexpected and playful."
         }
       };
 

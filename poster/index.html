@@ -48,38 +48,57 @@
 
     .status {
       position: fixed;
-      right: 0px;
-      bottom: 0px;
-      padding: 6px 10px;
+      right: 10px;
+      bottom: 10px;
+      padding: 16px 20px;
       border-radius: 0px;
-      background: rgb(0 0 0 / 60%);
-      color: rgb(255 255 255 / 85%);
-      font-size: 14px;
-      line-height: 1.35;
+      background: rgb(0 0 0 / 80%);
+      color: rgb(255 255 255 / 80%);
+      font-size: 10px;
+      line-height: 1.25;
+      max-width: 50vw;
       pointer-events: none;
-      text-align: center;
+      text-align: left;
+    }
+
+    .description {
+      color: rgb(255 255 255 / 100%);
+      padding-bottom: 20px;
+    }
+
+    .description:empty {
+      display: none;
+    }
+
+    .authors {
+      color: rgb(255 255 255 / 85%);
     }
   </style>
 </head>
 <body>
   <main class="slideshow" aria-label="Image slideshow">
-    <img class="slide active" src="Jiwoo-Kwon_Seoyeon-Jang_Sumin-Lee.jpg" alt="">
-    <img class="slide" src="Park-Seohyeong_Lee-Jeongwoo_Choi-Sihun_Hong-Daeun.jpg" alt="">
-    <img class="slide" src="Seohyun-Lee_Sunwoo-Kim_Seoyoung-Jang_Yuha-Kwon.jpg" alt="">
-    <img class="slide" src="Nayoung-Kwon_Jaehoon-So_Seyoung-Jeong_Junmo-Yoon.jpg" alt="">
-    <img class="slide" src="Minsung-Kim_Suhyeok-Han_Jihun-Baek_Haram-Kim_Jahyeok-Yang.jpg" alt="">
-    <img class="slide" src="gyeonga-ryu.jpg" alt="">
-    <img class="slide" src="Park-Yeonwoo_Choi-Yesol_Lee-Jimin.jpg" alt="">
-    <img class="slide" src="Alejandro_Dongho-Choi.jpg" alt="">
-    <img class="slide" src="Zahra_Ma-Kok-Ching_Paulina_Alicia_빈채현.jpg" alt="">
-    <img class="slide" src="Cho-Seoyeong_Lee-Huieun_Bae-Juna_Park-Jungin.jpg" alt="">
-    <img class="slide" src="Minjeong-Kang_Uwon-Shin_Hongju-Lee_Seoyeon-Jang_Yunseo-Cho_Heejeon-Hwang.jpg" alt="">
+    <img class="slide active" src="Jiwoo-Kwon_Seoyeon-Jang_Sumin-Lee.jpg" data-description="We visually represented a poster using the sounds called Ting and Bubbly. While brainstorming ideas, we felt that the sound of a bubble popping was similar to ting, and thought it would be fun to visually depict the moment a bubble bursts through the letters T, I, N, and G. Starting from this idea, we expressed the inner phenomena of a bubble in a distorted way to create its texture and emphasis. To enhance this effect, we applied color variations to the word bubbly in the background and completed the poster by adding ting elements that appear to spread outward as small particles." alt="">
+    <img class="slide" src="Park-Seohyeong_Lee-Jeongwoo_Choi-Sihun_Hong-Daeun.jpg" data-description="This work began with the materials &ldquo;fire,&rdquo; &ldquo;bubble,&rdquo; and &ldquo;zipper,&rdquo; and explores their contrasting qualities through typography rather than illustration. The composition combines the light, organic expansion of bubbles with the linear movement of a zipper. Scattered lowercase letters suggest the formation and diffusion of bubbles, while repeated &ldquo;zip&rdquo; text conveys the motion of an opening zipper. Through contrasts of scale, density, and movement, the work reinterprets the textures and behaviors of these materials, creating a dynamic visual dialogue between organic and structured forms." alt="">
+    <img class="slide" src="Seohyun-Lee_Sunwoo-Kim_Seoyoung-Jang_Yuha-Kwon.jpg" data-description="Inspired by a passage from the I Ching hexagram Li (Igniting), our group developed the phrase &ldquo;No ember burns forever without another&rsquo;s warmth&rdquo; as the foundation of this project. The sentence was divided among team members, with each person designing a set of letters using elements drawn from their earlier material-sound vector work. As a result, letterforms with distinct visual identities come together to form a single sentence. This collaborative structure reflects the meaning of the phrase itself: that no flame, idea, or act of creation endures alone, but gains strength through connection with others." alt="">
+    <img class="slide" src="Nayoung-Kwon_Jaehoon-So_Seyoung-Jeong_Junmo-Yoon.jpg" data-description="This poster visualizes the irritating sound of an alarm. It is based on the common experience of setting multiple alarms and repeatedly hearing the same sound in the morning. The overwhelming typography, repeated alarm interfaces, and layered visual elements express the mechanical, repetitive, and intrusive nature of the sound. By transforming an everyday auditory experience into a visual form, the poster conveys the feeling of being surrounded and overwhelmed by an endless sequence of alarms." alt="">
+    <img class="slide" src="Minsung-Kim_Suhyeok-Han_Jihun-Baek_Haram-Kim_Jahyeok-Yang.jpg" data-description="" alt="">
+    <img class="slide" src="gyeonga-ryu.jpg" data-description="This work was developed based on the phrase from the Book of Changes: &ldquo;Your iron will must come to the forefront now.&rdquo; Throughout the process, the structure of the canvas was explored through the combination of keywords such as &ldquo;verticality,&rdquo; &ldquo;order,&rdquo; and &ldquo;strength,&rdquo; alongside opposing concepts including &ldquo;organicity,&rdquo; &ldquo;erosion,&rdquo; and &ldquo;transformation.&rdquo; The kinetic movement and materiality inherent in onomatopoeias such as boing and swish were interpreted as visual elements, experimenting with how forms of differing natures collide and coexist within a single frame. Through this approach, the work aims to reveal the tension generated between structural order and organic variation." alt="">
+    <img class="slide" src="Park-Yeonwoo_Choi-Yesol_Lee-Jimin.jpg" data-description="This poster visualizes the process where joyful childhood memories gradually fade as they are eclipsed by new experiences encountered through growth and social life. It embodies the concept of memories being overlaid bynew ones, with the primary keywords being Nostalgia, Brightness, and Memory." alt="">
+    <img class="slide" src="Alejandro_Dongho-Choi.jpg" data-description="The poster visualizes a transformation from a harsh, metallic noise to a softer and more pleasant sound. At the top, jagged typography and a fractured background evoke tension and industrial friction. As the composition moves downward, these forms gradually dissolve into fluid, rounded letterforms, while the background shifts into calm blue gradients. This transition conveys a sense of relief as overwhelming noise gives way to a gentle melody. The work is inspired by the familiar sensation of anticipating a sneeze that never arrives, leaving behind an unresolved yet calming feeling." alt="">
+    <img class="slide" src="Zahra_Ma-Kok-Ching_Paulina_Alicia_빈채현.jpg" data-description="For this project, we used a Chinese internet guru website that generated prompts for us. The prompt we received was the word “slosh”, the sound water makes when it moves back and forth. Our task was to materialize this sound, translating something normally experienced through hearing into a physical form. Through this process, we explored how a simple word can evoke movement, texture, and imagery, turning an everyday sound into a tangible object or experience." alt="">
+    <img class="slide" src="Cho-Seoyeong_Lee-Huieun_Bae-Juna_Park-Jungin.jpg" data-description="Our team entered the keywords &ldquo;fizzy buzz,&rdquo; &ldquo;light vroom,&rdquo; &ldquo;furry fluff,&rdquo; and &ldquo;exciting flap&rdquo; into the I-Ching program. Inspired by the phrase &ldquo;Your needs are in harmony with the demands of the universe,&rdquo; we explored the idea of the universe as a space where diverse elements coexist in balance. Each member&rsquo;s sounds and adjectives were translated into geometric forms, including dots, lines, planes, textures, and typographic elements. The resulting compositions were printed on three layers of translucent tracing paper and overlaid to create depth, visual interaction, and a sense of harmony between distinct forms." alt="">
+    <img class="slide" src="Minjeong-Kang_Uwon-Shin_Hongju-Lee_Seoyeon-Jang_Yunseo-Cho_Heejeon-Hwang.jpg" data-description="For the Sound Dialog project, we collected six participants&rsquo; typographies, sounds, and adjectives and used I-Ching Online to generate the phrase &ldquo;Void in Excess,&rdquo; which became the foundation of our poster. The design consists of three layers: a dense typographic surface representing &ldquo;excess,&rdquo; a sheet of textured hanji paper, and a lower layer containing the blurred word &ldquo;void.&rdquo; By tearing through the upper layers, we revealed the hidden interior and emphasized the contrast between visual overload and emptiness. We produced two versions of the poster, printing the &ldquo;void&rdquo; layer on both hanji and smooth paper to explore how material texture changes the perception and emotional expression of the same concept." alt="">
   </main>
-  <div class="status" aria-live="polite"></div>
+  <div class="status" aria-live="polite">
+    <div class="description"></div>
+    <div class="authors"></div>
+  </div>
 
   <script>
     const slides = Array.from(document.querySelectorAll(".slide"));
     const status = document.querySelector(".status");
+    const description = status.querySelector(".description");
+    const authors = status.querySelector(".authors");
     const delayMs = 10000;
     let currentIndex = 0;
 
@@ -91,14 +110,19 @@
         .join(", ");
     }
 
+    function updateStatus(slide) {
+      description.textContent = slide.dataset.description;
+      authors.textContent = getAuthors(slide);
+    }
+
     function showSlide(index) {
       slides[currentIndex].classList.remove("active");
       currentIndex = index;
       slides[currentIndex].classList.add("active");
-      status.textContent = getAuthors(slides[currentIndex]);
+      updateStatus(slides[currentIndex]);
     }
 
-    status.textContent = getAuthors(slides[currentIndex]);
+    updateStatus(slides[currentIndex]);
 
     setInterval(() => {
       showSlide((currentIndex + 1) % slides.length);
